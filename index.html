@@ -180,34 +180,6 @@ body.admin-mode #loginPanel{max-width:650px;margin:6vh auto 24px;box-shadow:0 25
 .staffEmpty{text-align:center;background:#fff;border:1px solid #e1e9f3;border-radius:16px;padding:38px 15px;color:#73839a;margin-top:15px}
 @media(max-width:640px){.staffShell{margin:15px auto 35px;padding:0 12px}.staffDetails{grid-template-columns:1fr}.staffOrder{padding:15px}.staffTopButtons{width:100%}.staffTopButtons button{flex:1}.staffToolbar input[type="search"]{min-width:100%}}
 
-
-/* الحضور والانصراف: ينسجم مع تصميم الإدارة الحالي */
-.att-pills{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0 18px}
-.att-scan-btn{background:#178d9e;color:white;min-width:148px}
-.att-out-btn{background:#1c3168;color:white;min-width:148px}
-.att-panel-note{border:1px solid #d7e6ef;background:#f4f9fc;border-radius:12px;padding:12px;font-size:13px;color:#496177;margin:12px 0}
-.att-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.att-kpi{background:#f5faff;border:1px solid #e1ebf3;border-radius:14px;padding:16px}
-.att-kpi small{color:#647a91;display:block;margin-bottom:8px}.att-kpi strong{color:#1c3168;font-size:23px}
-.att-scanner-box{max-width:480px;margin:16px auto;border-radius:14px;overflow:hidden}
-#attendanceScanner{width:100%;min-height:220px;background:#0d2136;border-radius:12px;overflow:hidden}
-#attendanceQr{display:grid;place-items:center;background:#fff;padding:14px;border:1px solid #e1eaf3;border-radius:14px;max-width:282px;margin:12px auto}
-#attendanceQr img,#attendanceQr canvas{max-width:100%!important;height:auto!important}
-.att-table-wrap{overflow-x:auto;border:1px solid #e0e9f3;border-radius:12px;margin-top:14px}
-.att-table{border-collapse:collapse;width:100%;min-width:650px;font-size:13px;background:white}
-.att-table th{background:#f0f6fb;color:#284464;text-align:right;padding:12px;white-space:nowrap}
-.att-table td{padding:11px 12px;border-top:1px solid #e7eef5;vertical-align:middle}
-.att-badge{display:inline-block;border-radius:100px;background:#e8f7f1;color:#146343;font-size:12px;padding:5px 10px;font-weight:bold}
-.att-badge.wait{background:#fff4e1;color:#895914}
-.att-name-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.staffAttendanceWidget{margin:0 0 18px;background:#fff;border:1px solid #dce9f1;border-radius:18px;padding:22px;box-shadow:0 8px 22px #142e4f0c}
-.staffAttendanceWidget h2{color:#1c3168;margin:0 0 9px;font-size:21px}
-.staffAttendanceWidget .field{max-width:460px}
-.staffAttendanceWidget .field input{border:1px solid #dce6f0;border-radius:11px;padding:12px;background:#fbfdff}
-.att-staff-log{display:grid;gap:8px;margin-top:14px}
-.att-staff-record{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#f5f9fc;border-radius:11px;padding:12px;font-size:13px}
-@media(max-width:700px){.att-grid{grid-template-columns:1fr}.staffAttendanceWidget{padding:15px}.att-pills button{flex:1}}
-@media print{.noPrint,#attendanceScannerPanel{display:none!important}}
 </style></head><body><header><div class="bar"><div class="brand"><img src="./assets/logo.jpg" alt="شعار الإبداع"><span id="brandName">الإبداع للنقش بالليزر</span></div><div class="actions"><a href="https://alabda3.github.io/store/" style="color:#1b6f9b;text-decoration:none;font-weight:bold">عرض المتجر ↗</a><button class="soft small hidden" id="homeBtn">المتجر</button><button class="soft small hidden" id="cartBtn">🛒 <span id="cartCount">0</span></button><button class="dark small hidden" id="adminBtn">الإدارة</button></div></div></header><main class="wrap">
 <section id="shopPage"><div class="hero"><h1 id="heroName">الإبداع للنقش بالليزر</h1><p id="subtitle">هدايا ومنتجات مميزة</p><div class="social" id="social"></div></div><div class="sectionTitle"><h2>منتجاتنا</h2><span class="muted" id="productCount"></span></div><input class="search" id="search" placeholder="ابحث في المنتجات أو التصنيفات"><div class="grid" id="products"></div></section>
 <section id="cartPage" class="hidden"><h2>سلة المشتريات</h2><div class="panel" id="cartItems"></div><div class="panel"><div class="totals"><span>مجموع المنتجات</span><span id="cartSubtotal"></span></div><div class="totals"><span>التوصيل</span><span id="cartDelivery"></span></div><div class="totals"><span>الإجمالي</span><span id="cartTotal"></span></div><button id="checkoutBtn">متابعة إلى تفاصيل التوصيل</button></div></section>
@@ -223,7 +195,6 @@ body.admin-mode #loginPanel{max-width:650px;margin:6vh auto 24px;box-shadow:0 25
         <button type="button" data-tab="catalog"><span class="navIcon">▣</span><span>المنتجات</span></button>
         <button type="button" data-tab="banners"><span class="navIcon">▧</span><span>إعلانات المتجر</span></button>
         <button type="button" data-tab="orders"><span class="navIcon">▤</span><span>الطلبات</span></button>
-         <button type="button" data-tab="attendance"><span class="navIcon">◷</span><span>حضور الموظفين</span></button>
         <button type="button" data-tab="settings"><span class="navIcon">⚙</span><span>إعدادات المتجر</span></button>
       </nav>
       <div class="sidebarBottom"><span class="onlineDot"></span> متصل بنظام إدارة المتجر</div>
@@ -251,36 +222,6 @@ body.admin-mode #loginPanel{max-width:650px;margin:6vh auto 24px;box-shadow:0 25
   </div>
   <div class="panel"><h3>ترتيب الإعلانات</h3><div id="bannerList"></div></div>
 </div>
-
-<div id="attendanceTab" class="hidden">
-  <div class="panel">
-    <h3>◷ حضور وانصراف الموظفين</h3>
-    <p class="muted">كل موظف يسجّل بحسابه ويمسح باركود المحل بكاميرا الآيفون. التوقيت من Supabase بتوقيت بغداد.</p>
-    <div id="attendanceStats" class="att-grid"></div>
-    <div class="att-panel-note">تنبيه: هذه النسخة تسجّل باستخدام QR ثابت وحساب موظف، لكنها لا تفرض الاتصال براوتر المحل حتى تتم إضافة بوابة تحقق محلية.</div>
-  </div>
-  <div class="panel">
-    <h3>▦ باركود المحل الثابت</h3>
-    <p class="muted">اعرض الباركود واطبعه وثبّته بمكان العمل. لا تشاركه مع أشخاص خارج المحل.</p>
-    <div id="attendanceQr"></div>
-    <div class="row"><button type="button" class="soft" id="attendancePrintQr">طباعة الباركود</button><button type="button" class="soft" id="attendanceRefresh">تحديث السجلات</button></div>
-    <div id="attendanceAdminMsg"></div>
-  </div>
-  <div class="panel">
-    <h3>الموظفون المسجّلون</h3>
-    <p class="muted">يظهر الموظف هنا بعد حفظ اسمه أول مرة بحساب الموظف. المدير يگدر يعدّل الاسم أو يوقّف تسجيل الدوام.</p>
-    <div id="attendanceEmployees"></div>
-  </div>
-  <div class="panel">
-    <div class="panelHeading"><div><h3>تقرير الحضور والانصراف</h3><p class="muted">اختار الفترة، ثم صدّر السجلات إلى Excel/CSV عند الحاجة.</p></div></div>
-    <div class="formGrid">
-      <label class="field">من تاريخ<input type="date" id="attendanceFrom"></label>
-      <label class="field">إلى تاريخ<input type="date" id="attendanceTo"></label>
-    </div>
-    <div class="att-pills"><button type="button" class="soft" id="attendanceFilter">عرض التقرير</button><button type="button" id="attendanceExport">تصدير CSV</button></div>
-    <div id="attendanceReport"></div>
-  </div>
-</div>
 <div id="ordersTab" class="hidden"><div class="panel"><h3>إدارة الطلبات</h3><input class="search" id="orderSearch" placeholder="بحث بالاسم أو الهاتف أو رقم الطلب"><div id="adminOrders"></div></div></div><div id="settingsTab" class="hidden"><div class="panel"><h3>إعدادات المتجر</h3><form id="settingsForm" class="formGrid"><label class="field">اسم المتجر<input name="name" required></label><label class="field">الوصف<input name="subtitle"></label><label class="field">إنستغرام (رابط كامل)<input name="instagram"></label><label class="field">تيك توك (رابط كامل)<input name="tiktok"></label><label class="field">رقم واتساب<input name="whatsapp"></label><label class="field">أجرة التوصيل بالدينار<input type="number" name="delivery_fee" min="0" required></label><div class="full"><button>حفظ الإعدادات</button></div></form><div id="settingsMsg"></div></div><div class="panel">
   <h3>💳 إعدادات التحويل الإلكتروني</h3>
   <p class="muted">التفعيل اختياري. تأكد من المصرف أن البيانات المدخلة تستقبل التحويل فعلاً. الزبون سيشوف هذه المعلومات عند اختيار التحويل.</p>
@@ -300,28 +241,13 @@ body.admin-mode #loginPanel{max-width:650px;margin:6vh auto 24px;box-shadow:0 25
       <div><span class="staffChip">حساب موظف • صلاحية تثبيت فقط</span><h1>طلبات المتجر</h1><p>راسل الزبون على واتساب، وبعد ما يرد بالتأكيد تگدر تثبّت طلبه.</p></div>
       <div class="staffTopButtons"><button type="button" class="staffRefresh" id="staffRefresh">↻ تحديث الطلبات</button><button type="button" class="staffLogout" id="staffLogout">تسجيل الخروج</button></div>
     </div>
-
-    <div class="staffAttendanceWidget" id="staffAttendanceWidget">
-      <h2>◷ تسجيل الحضور والانصراف</h2>
-      <p class="muted">احفظ اسمك، وبعدها اختار حضور أو انصراف ووجّه كاميرا الآيفون إلى باركود المحل.</p>
-      <label class="field">اسم الموظف<input type="text" id="attendanceDisplayName" maxlength="100" placeholder="اسمك الكامل"></label>
-      <div class="att-pills"><button type="button" class="soft" id="attendanceSaveName">حفظ الاسم</button></div>
-      <div class="att-pills"><button type="button" id="attendanceCheckIn" class="att-scan-btn">📷 تسجيل حضور</button><button type="button" id="attendanceCheckOut" class="att-out-btn">📷 تسجيل انصراف</button></div>
-      <div id="attendanceScannerPanel" class="hidden">
-        <p id="attendanceScannerHint" class="muted"></p>
-        <div class="att-scanner-box"><div id="attendanceScanner"></div></div>
-        <button type="button" id="attendanceStopScan" class="soft">إغلاق الكاميرا</button>
-      </div>
-      <div id="attendanceStaffMsg" role="status" aria-live="polite"></div>
-      <h3>آخر تسجيلاتي</h3><div id="attendanceMyHistory" class="att-staff-log"></div>
-    </div>
     <div class="staffToolbar"><input type="search" id="staffSearch" placeholder="بحث برقم الطلب أو اسم الزبون أو الهاتف" aria-label="البحث عن طلب"><label><input type="checkbox" id="staffOnlyPending" checked> عرض الطلبات قيد الانتظار فقط</label></div>
     <div id="staffMessage" role="status" aria-live="polite"></div>
     <div id="staffSummary" class="staffSummary"></div>
     <div id="staffOrdersList"></div>
   </div>
 </section>
-</main><footer class="footer">© الإبداع للنقش بالليزر</footer><script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script><script type="module">
+</main><footer class="footer">© الإبداع للنقش بالليزر</footer><script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL='https://fqqbqeopisbrcfpjkfad.supabase.co';
 const SUPABASE_ANON_KEY='sb_publishable_NK20CJCn-y62ySKqD-Lsrg_YqBBJLqg';
@@ -807,8 +733,8 @@ $('settingsForm').onsubmit=async e=>{e.preventDefault();const f=e.target,record=
 let banners=[],payments=[],paymentSettingsAdmin={enabled:false,provider_name:'ماستر كارد الرافدين',recipient_name:'',transfer_details:''};
 const defaultTab=tab;
 tab=function(t){
-  const meta={overview:['نظرة عامة','أهلاً بيك، هاي آخر حركة متجرك'],catalog:['المنتجات','إدارة صور المنتجات والأسعار والحالة'],banners:['إعلانات المتجر','رتّب صور السلايدر وأضف إعلانات جديدة'],orders:['الطلبات','تابع الطلبات والتوصيل والتحويلات'],attendance:['حضور الموظفين','سجلات الحضور والانصراف وتقارير الدوام'],settings:['إعدادات المتجر','عدّل معلومات المتجر ووسائل الدفع']};
-  for(const k of ['overview','catalog','banners','orders','attendance','settings'])$(k+'Tab').classList.toggle('hidden',k!==t);
+  const meta={overview:['نظرة عامة','أهلاً بيك، هاي آخر حركة متجرك'],catalog:['المنتجات','إدارة صور المنتجات والأسعار والحالة'],banners:['إعلانات المتجر','رتّب صور السلايدر وأضف إعلانات جديدة'],orders:['الطلبات','تابع الطلبات والتوصيل والتحويلات'],settings:['إعدادات المتجر','عدّل معلومات المتجر ووسائل الدفع']};
+  for(const k of ['overview','catalog','banners','orders','settings'])$(k+'Tab').classList.toggle('hidden',k!==t);
   document.querySelectorAll('.adminNav [data-tab]').forEach(b=>{b.classList.toggle('navActive',b.dataset.tab===t);if(b.dataset.tab===t)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   const [title,subtitle]=meta[t]||meta.overview;
   $('adminSectionTitle').textContent=title;$('adminSectionSubtitle').textContent=subtitle;
@@ -1094,239 +1020,6 @@ $('staffLogout').onclick=async()=>{
   isStaff=false;staffOrders=[];staffItems=[];staffImages=[];
   show('admin');await checkAuth();
 };
-
-
-// ===== إضافة الحضور والانصراف: لا تتداخل مع بيانات المتجر والطلبات =====
-let attScanner = null;
-let attScanningBusy = false;
-let attCurrentAction = null;
-let attProfile = null;
-let attEmployees = [];
-let attShifts = [];
-let attQrValue = '';
-let attStaffUserId = null;
-
-function attMessage(id, text, good=false){
-  const e=$(id); if(!e)return;
-  e.textContent=text;e.className=text?'notice '+(good?'success':'error'):'';
-}
-function attTime(time){
-  if(!time)return '—';
-  return new Date(time).toLocaleString('ar-IQ', {timeZone:'Asia/Baghdad',dateStyle:'short',timeStyle:'short'});
-}
-function attHours(shift){
-  if(!shift.check_out)return '—';
-  const hours=(new Date(shift.check_out)-new Date(shift.check_in))/3600000;
-  return Number.isFinite(hours)&&hours>=0?hours.toFixed(2)+' ساعة':'—';
-}
-function attDayKey(d){
-  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Baghdad',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
-  const p=type=>parts.find(x=>x.type===type)?.value||'';
-  return p('year')+'-'+p('month')+'-'+p('day');
-}
-function attMonthFirst(){const today=attDayKey(new Date());return today.slice(0,8)+'01'}
-async function attLoadStaff(){
-  if(!isStaff||!db)return;
-  try{
-    const {data:{user},error:authError}=await db.auth.getUser();
-    if(authError)throw authError;
-    attStaffUserId=user?.id||null;
-    const [emp,shifts]=await Promise.all([
-      db.from('store_attendance_employees').select('user_id,full_name,active').eq('user_id',attStaffUserId).maybeSingle(),
-      db.from('store_attendance_shifts').select('work_date,check_in,check_out').eq('user_id',attStaffUserId).order('check_in',{ascending:false}).limit(12)
-    ]);
-    if(emp.error||shifts.error)throw (emp.error||shifts.error);
-    attProfile=emp.data||null;
-    $('attendanceDisplayName').value=attProfile?.full_name||'';
-    $('attendanceCheckIn').disabled=attProfile?.active===false;
-    $('attendanceCheckOut').disabled=attProfile?.active===false;
-    const root=$('attendanceMyHistory');root.replaceChildren();
-    if(!shifts.data?.length){root.append(node('p','ماكو تسجيلات حضور لحد الآن.'));return}
-    for(const s of shifts.data){
-      const item=node('div','');item.className='att-staff-record';
-      item.append(node('strong',s.work_date),node('span','حضور: '+attTime(s.check_in)),node('span','انصراف: '+attTime(s.check_out)),node('span',attHours(s)));
-      root.append(item);
-    }
-  }catch(error){attMessage('attendanceStaffMsg','نظام الدوام يحتاج تفعيل ملف SQL: '+error.message)}
-}
-$('attendanceSaveName').onclick=async()=>{
-  const name=$('attendanceDisplayName').value.trim();
-  if(name.length<2||name.length>100)return attMessage('attendanceStaffMsg','اكتب الاسم الكامل من حرفين إلى 100 حرف');
-  const btn=$('attendanceSaveName');btn.disabled=true;
-  try{
-    const {error}=await db.rpc('store_attendance_set_name',{p_name:name});
-    if(error)throw error;
-    await attLoadStaff();attMessage('attendanceStaffMsg','تم حفظ اسم الموظف بنجاح',true);
-  }catch(error){attMessage('attendanceStaffMsg',error.message)}finally{btn.disabled=false}
-};
-async function attStopScanner(){
-  const scanner=attScanner;attScanner=null;
-  if(scanner){
-    try{await scanner.stop()}catch(_){}
-    try{scanner.clear()}catch(_){}
-  }
-  $('attendanceScannerPanel').classList.add('hidden');
-}
-async function attStartScanner(action){
-  if(!isStaff)return;
-  if(!attProfile?.full_name)return attMessage('attendanceStaffMsg','احفظ اسمك أولاً قبل تسجيل الحضور والانصراف');
-  if(!attProfile.active)return attMessage('attendanceStaffMsg','حساب الدوام معطّل. راجع المدير');
-  if(typeof Html5Qrcode==='undefined')return attMessage('attendanceStaffMsg','تعذر تحميل قارئ الكاميرا. تأكد من اتصال الإنترنت وحدّث الصفحة');
-  if(!window.isSecureContext)return attMessage('attendanceStaffMsg','الكاميرا تحتاج فتح الموقع عبر HTTPS');
-  await attStopScanner();
-  attScanningBusy=false;attCurrentAction=action;
-  $('attendanceScannerPanel').classList.remove('hidden');
-  $('attendanceScannerHint').textContent=action==='in'?'وجّه الكاميرا إلى QR المحل لتسجيل الحضور':'وجّه الكاميرا إلى QR المحل لتسجيل الانصراف';
-  attMessage('attendanceStaffMsg','اسمح للمتصفح باستخدام الكاميرا عند طلب الإذن',true);
-  const scanner=new Html5Qrcode('attendanceScanner',{formatsToSupport:[Html5QrcodeSupportedFormats.QR_CODE],verbose:false});
-  attScanner=scanner;
-  try{
-    await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},async decoded=>{
-      if(attScanningBusy||attScanner!==scanner)return;
-      attScanningBusy=true;
-      await attStopScanner();
-      attMessage('attendanceStaffMsg','جاري تسجيل العملية... ',true);
-      try{
-        const {data,error}=await db.rpc('store_attendance_scan',{p_code:decoded.trim(),p_action:action});
-        if(error)throw error;
-        const label=data?.status==='checked_in'?'تم تسجيل الحضور':'تم تسجيل الانصراف';
-        attMessage('attendanceStaffMsg','✅ '+label+' بنجاح — '+attTime(data?.at),true);
-        await attLoadStaff();
-      }catch(err){attMessage('attendanceStaffMsg','تعذر التسجيل: '+err.message)}
-      finally{attScanningBusy=false}
-    },()=>{});
-  }catch(error){
-    if(attScanner===scanner)await attStopScanner();
-    attMessage('attendanceStaffMsg','تعذر فتح الكاميرا: '+error.message+' — افتح الصفحة في Safari واسمح بإذن الكاميرا');
-  }
-}
-$('attendanceCheckIn').onclick=()=>attStartScanner('in');
-$('attendanceCheckOut').onclick=()=>attStartScanner('out');
-$('attendanceStopScan').onclick=()=>attStopScanner();
-
-function attCsvValue(value){
-  let s=String(value??'');
-  if(/^[\s]*[=+@-]/.test(s))s="'"+s; // منع تنفيذ المعادلات في Excel
-  return '"'+s.replace(/"/g,'""')+'"';
-}
-function attFiltered(){
-  const from=$('attendanceFrom').value,to=$('attendanceTo').value;
-  return attShifts.filter(s=>(!from||s.work_date>=from)&&(!to||s.work_date<=to));
-}
-function attRenderReport(){
-  const root=$('attendanceReport');root.replaceChildren();
-  if($('attendanceFrom').value&&$('attendanceTo').value&&$('attendanceFrom').value>$('attendanceTo').value){
-    root.append(node('p','تاريخ البداية لازم يكون قبل تاريخ النهاية'));return;
-  }
-  const rows=attFiltered();
-  if(!rows.length){root.append(node('p','ماكو سجلات بالفترة المحددة.'));return}
-  const names=new Map(attEmployees.map(e=>[e.user_id,e.full_name]));
-  const wrapper=node('div','');wrapper.className='att-table-wrap';
-  const table=node('table','');table.className='att-table';
-  const head=document.createElement('thead'),tr=document.createElement('tr');
-  for(const title of ['الموظف','التاريخ','الحضور','الانصراف','ساعات الدوام','الحالة'])tr.append(node('th',title));
-  head.append(tr);table.append(head);
-  const body=document.createElement('tbody');
-  for(const s of rows){
-    const tr=document.createElement('tr');
-    for(const val of [names.get(s.user_id)||'موظف سابق',s.work_date,attTime(s.check_in),attTime(s.check_out),attHours(s),s.check_out?'مكتمل':'داخل الدوام'])tr.append(node('td',val));
-    body.append(tr);
-  }
-  table.append(body);wrapper.append(table);root.append(wrapper);
-}
-function attRenderEmployees(){
-  const root=$('attendanceEmployees');root.replaceChildren();
-  if(!attEmployees.length){root.append(node('p','بعد ما مسجّل أي موظف اسمه بالنظام.'));return}
-  for(const employee of attEmployees){
-    const wrap=node('div','');wrap.className='orderCard';
-    const row=node('div','');row.className='row';
-    const name=node('strong',employee.full_name);name.style.flex='1';
-    const status=node('span',employee.active?'فعّال':'موقوف');status.className='att-badge'+(employee.active?'':' wait');
-    const edit=node('button','تعديل الاسم');edit.type='button';edit.className='small soft';
-    edit.onclick=async()=>{
-      const next=prompt('اسم الموظف الجديد:',employee.full_name);
-      if(next===null)return;
-      const trimmed=next.trim();
-      if(trimmed.length<2||trimmed.length>100)return alert('الاسم لازم يكون من حرفين إلى 100 حرف');
-      const {error}=await db.from('store_attendance_employees').update({full_name:trimmed}).eq('user_id',employee.user_id);
-      if(error)return alert(error.message);
-      employee.full_name=trimmed;attRenderEmployees();attRenderReport();
-    };
-    const toggle=node('button',employee.active?'إيقاف الدوام':'تفعيل الدوام');toggle.type='button';toggle.className='small '+(employee.active?'danger':'soft');
-    toggle.onclick=async()=>{
-      if(!confirm('تأكيد '+(employee.active?'إيقاف':'تفعيل')+' تسجيل الدوام لـ '+employee.full_name+'؟'))return;
-      toggle.disabled=true;
-      const {error}=await db.from('store_attendance_employees').update({active:!employee.active}).eq('user_id',employee.user_id);
-      if(error){toggle.disabled=false;return alert(error.message)}
-      employee.active=!employee.active;attRenderEmployees();attRenderStats();
-    };
-    row.append(name,status,edit,toggle);wrap.append(row);root.append(wrap);
-  }
-}
-function attRenderStats(){
-  const today=attDayKey(new Date());
-  const todayRows=attShifts.filter(s=>s.work_date===today);
-  const values=[['الموظفون المسجّلون',attEmployees.filter(e=>e.active).length],['حضور اليوم',todayRows.length],['داخل الدوام حالياً',attShifts.filter(s=>!s.check_out).length]];
-  const root=$('attendanceStats');root.replaceChildren();
-  for(const [label,value] of values){const card=node('div','');card.className='att-kpi';card.append(node('small',label),node('strong',String(value)));root.append(card)}
-}
-function attRenderQr(){
-  const root=$('attendanceQr');root.replaceChildren();
-  if(!attQrValue){root.append(node('p','لم يتم إنشاء باركود المحل بعد.'));return}
-  if(typeof QRCode==='undefined'){root.append(node('p','تعذر تحميل مولّد QR. تأكد من الإنترنت.'));return}
-  new QRCode(root,{text:attQrValue,width:235,height:235,colorDark:'#10274f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-}
-async function attLoadAdmin(){
-  if(!isAdmin||!db)return;
-  const [settings,people,shifts]=await Promise.all([
-    db.from('store_attendance_settings').select('qr_token').eq('id',1).single(),
-    db.from('store_attendance_employees').select('user_id,full_name,active,created_at').order('full_name'),
-    db.from('store_attendance_shifts').select('user_id,work_date,check_in,check_out').order('check_in',{ascending:false}).limit(5000)
-  ]);
-  if(settings.error||people.error||shifts.error){
-    attMessage('attendanceAdminMsg','ما تم تحميل بيانات الدوام. نفّذ attendance_setup.sql في Supabase. السبب: '+(settings.error||people.error||shifts.error).message);
-    return;
-  }
-  attMessage('attendanceAdminMsg','');
-  attQrValue=settings.data?.qr_token||'';
-  attEmployees=people.data||[];
-  attShifts=shifts.data||[];
-  attRenderQr();attRenderEmployees();attRenderStats();attRenderReport();
-}
-$('attendanceRefresh').onclick=()=>attLoadAdmin();
-$('attendanceFilter').onclick=attRenderReport;
-$('attendanceExport').onclick=()=>{
-  if($('attendanceFrom').value>$('attendanceTo').value)return attRenderReport();
-  const names=new Map(attEmployees.map(e=>[e.user_id,e.full_name]));
-  const data=[['الموظف','التاريخ','الحضور','الانصراف','ساعات الدوام','الحالة'],...attFiltered().map(s=>[
-    names.get(s.user_id)||'موظف سابق',s.work_date,attTime(s.check_in),attTime(s.check_out),attHours(s),s.check_out?'مكتمل':'داخل الدوام'])];
-  const csv='\ufeff'+data.map(row=>row.map(attCsvValue).join(',')).join('\r\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  const url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download='attendance_'+attDayKey(new Date())+'.csv';a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-};
-$('attendancePrintQr').onclick=()=>{
-  if(!attQrValue)return attMessage('attendanceAdminMsg','باركود المحل غير متاح بعد');
-  const canvas=$('attendanceQr').querySelector('canvas');
-  const image=$('attendanceQr').querySelector('img');
-  const source=canvas?.toDataURL('image/png')||image?.src;
-  if(!source)return attMessage('attendanceAdminMsg','انتظر ظهور الباركود أولاً');
-  const w=window.open('','_blank');
-  if(!w)return attMessage('attendanceAdminMsg','اسمح بالنوافذ المنبثقة حتى تقدر تطبع');
-  w.opener=null;
-  w.document.write('<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>باركود حضور الإبداع</title><body style="text-align:center;font-family:Tahoma,Arial;padding:28px"><h1>الإبداع للنقش بالليزر</h1><h2>باركود الحضور والانصراف</h2><img src="'+source+'" width="270" height="270" alt="QR"><p>امسح الرمز بكاميرا الآيفون من حساب الموظف داخل لوحة المتجر.</p></body></html>');
-  w.document.close();w.focus();
-  w.setTimeout(()=>w.print(),350);
-};
-$('attendanceFrom').value=attMonthFirst();
-$('attendanceTo').value=attDayKey(new Date());
-
-// نضيف تحميل الحضور فوق إجراءات التحميل الموجودة دون حذف أي وظيفة سابقة.
-const attPreviousLoadAdmin=loadAdmin;
-loadAdmin=async function(){await attPreviousLoadAdmin();if(isAdmin)await attLoadAdmin()};
-const attPreviousCheckAuth=checkAuth;
-checkAuth=async function(){await attPreviousCheckAuth();if(isStaff)await attLoadStaff();else await attStopScanner()};
 
 loadShop();
 show('admin');checkAuth();
