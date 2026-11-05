@@ -207,7 +207,7 @@ body.admin-mode #loginPanel{max-width:650px;margin:6vh auto 24px;box-shadow:0 25
       </div>
       <div class="adminPanels">
       <div id="overviewTab"><div class="overviewWelcome"><div><span class="eyebrow">لوحة متابعة المتجر</span><h2>كل تفاصيل متجرك بمكان واحد</h2><p>تابع المنتجات والطلبات والتحويلات وأجور التوصيل أولاً بأول.</p></div><div class="welcomeOrb" aria-hidden="true">✦</div></div><div class="metrics" id="metrics"></div>
-      <div class="dashboardLower"><div class="panel chartPanel"><div class="panelHeading"><div><h3>حركة الطلبات خلال 7 أيام</h3><p class="muted">قيمة الطلبات غير الملغية بالدينار العراقي</p></div></div><div id="weeklyChart" class="weeklyChart" aria-label="رسم الطلبات الأسبوعية"></div></div><div class="panel recentPanel"><div class="panelHeading"><div><h3>آخر الطلبات</h3><p class="muted">اضغط على الطلب حتى تفتح تفاصيله مباشرة</p></div><button type="button" id="allOrdersQuick" class="textAction">عرض الكل ←</button></div><div id="recentOrders"></div></div></div></div><div id="catalogTab" class="hidden"><div class="panel"><h3 id="productFormTitle">إضافة منتج</h3><form id="productForm" class="formGrid"><input type="hidden" name="id"><label class="field">اسم المنتج<input name="name" required maxlength="150"></label><label class="field">السعر بالدينار<input name="price" type="number" min="0" max="100000000" required></label><label class="field">التصنيف<input name="category" required maxlength="80" value="عام"></label><label class="field">الصورة الرئيسية (اختياري عند التعديل)<input type="file" name="product_image" accept="image/jpeg,image/png,image/webp"></label><label class="field full">صور إضافية للمنتج (اختار أكثر من صورة)<input type="file" name="extra_images" accept="image/jpeg,image/png,image/webp" multiple><small class="muted">تگدر تختار عدة صور دفعة وحدة. الحد الأقصى 5 ميگابايت لكل صورة.</small></label><div class="field full"><strong>الصور الإضافية المحفوظة</strong><div id="existingImages" class="row"></div><small class="muted">حدد «حذف» تحت أي صورة حتى تنشال من معرض المنتج عند الحفظ.</small></div><label class="field full">وصف المنتج<textarea name="description" maxlength="1000"></textarea></label><label class="field">الحالة<select name="active"><option value="true">معروض</option><option value="false">مخفي</option></select></label><div class="full row"><button>حفظ المنتج</button><button type="button" class="soft" id="clearProduct">منتج جديد</button></div></form><div id="productMsg"></div></div><div class="panel"><h3>قائمة المنتجات</h3><div id="adminProducts"></div></div></div>
+      <div class="dashboardLower"><div class="panel chartPanel"><div class="panelHeading"><div><h3>حركة الطلبات خلال 7 أيام</h3><p class="muted">قيمة الطلبات غير الملغية بالدينار العراقي</p></div></div><div id="weeklyChart" class="weeklyChart" aria-label="رسم الطلبات الأسبوعية"></div></div><div class="panel recentPanel"><div class="panelHeading"><div><h3>آخر الطلبات</h3><p class="muted">اضغط على الطلب حتى تفتح تفاصيله مباشرة</p></div><button type="button" id="allOrdersQuick" class="textAction">عرض الكل ←</button></div><div id="recentOrders"></div></div></div></div><div id="catalogTab" class="hidden"><div class="panel"><h3 id="productFormTitle">إضافة منتج</h3><form id="productForm" class="formGrid"><input type="hidden" name="id"><label class="field">اسم المنتج<input name="name" required maxlength="150"></label><label class="field">السعر الأصلي بالدينار<input name="original_price" type="number" min="0" max="100000000" step="1" required></label><label class="field">نسبة الخصم %<input name="discount_percent" type="number" min="0" max="99" step="1" value="0" required></label><label class="field">السعر النهائي بعد الخصم<input name="price" type="number" min="0" max="100000000" step="1" readonly required></label><div class="field full"><div id="discountPreview" class="notice" aria-live="polite">أدخل السعر الأصلي ونسبة الخصم، والسعر النهائي ينحسب تلقائياً.</div></div><label class="field">التصنيف<input name="category" required maxlength="80" value="عام"></label><label class="field">الصورة الرئيسية (اختياري عند التعديل)<input type="file" name="product_image" accept="image/jpeg,image/png,image/webp"></label><label class="field full">صور إضافية للمنتج (اختار أكثر من صورة)<input type="file" name="extra_images" accept="image/jpeg,image/png,image/webp" multiple><small class="muted">تگدر تختار عدة صور دفعة وحدة. الحد الأقصى 5 ميگابايت لكل صورة.</small></label><div class="field full"><strong>الصور الإضافية المحفوظة</strong><div id="existingImages" class="row"></div><small class="muted">حدد «حذف» تحت أي صورة حتى تنشال من معرض المنتج عند الحفظ.</small></div><label class="field full">وصف المنتج<textarea name="description" maxlength="1000"></textarea></label><label class="field">الحالة<select name="active"><option value="true">معروض</option><option value="false">مخفي</option></select></label><div class="full row"><button>حفظ المنتج</button><button type="button" class="soft" id="clearProduct">منتج جديد</button></div></form><div id="productMsg"></div></div><div class="panel"><h3>قائمة المنتجات</h3><div id="adminProducts"></div></div></div>
 <div id="bannersTab" class="hidden">
   <div class="panel">
     <h3>🖼️ إعلانات المتجر</h3>
@@ -466,7 +466,30 @@ function renderExistingImages(p){
     card.append(img,label);root.append(card);
   });
 }
-function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const name=node('div',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)'));name.className='grow';const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','price','category','description'])f.elements[k].value=p[k]??'';f.elements.active.value=String(p.active);renderExistingImages(p);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)}
+// ===== خصومات المنتجات: السعر المُعتمد في الطلب هو price النهائي =====
+function updateDiscountPreview(){
+  const f=$('productForm');
+  const raw=String(f.elements.original_price.value).trim();
+  const percent=Number(f.elements.discount_percent.value);
+  const original=Number(raw);
+  const valid=raw!=='' && Number.isSafeInteger(original) && original>=0 && original<=100000000
+    && Number.isInteger(percent) && percent>=0 && percent<=99;
+  const preview=$('discountPreview');
+  if(!valid){
+    f.elements.price.value='';
+    preview.textContent='أدخل سعراً صحيحاً ونسبة خصم من 0 إلى 99.';
+    return null;
+  }
+  const finalPrice=Math.round(original*(100-percent)/100);
+  f.elements.price.value=String(finalPrice);
+  preview.textContent=percent>0
+    ? 'السعر قبل الخصم: '+money(original)+' | الخصم: '+percent+'% | السعر الجديد: '+money(finalPrice)
+    : 'بدون خصم — سعر البيع: '+money(finalPrice);
+  return {original,percent,finalPrice};
+}
+$('productForm').elements.original_price.addEventListener('input',updateDiscountPreview);
+$('productForm').elements.discount_percent.addEventListener('input',updateDiscountPreview);
+function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const percentage=Number(p.discount_percent)||0;const original=Number(p.original_price??p.price);const name=node('div','');name.className='grow';name.append(node('strong',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)')));if(percentage>0&&original>Number(p.price)){const old=node('div','السعر السابق: '+money(original)+' | خصم '+percentage+'%');old.className='muted';old.style.marginTop='6px';name.append(old);}const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','category','description'])f.elements[k].value=p[k]??'';f.elements.original_price.value=String(p.original_price??p.price??0);f.elements.discount_percent.value=String(p.discount_percent??0);updateDiscountPreview();f.elements.active.value=String(p.active);renderExistingImages(p);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)}
 const img = document.createElement('img');
 img.src = safeUrl(p.image_url) || './assets/logo.jpg';
 img.alt = p.name;
@@ -554,7 +577,7 @@ del.onclick = async () => {
 
 r.append(img,name,edit,del);
 root.append(r)}}
-$('clearProduct').onclick=()=>{$('productForm').reset();$('productForm').elements.id.value='';$('productFormTitle').textContent='إضافة منتج';$('existingImages').replaceChildren()};
+$('clearProduct').onclick=()=>{$('productForm').reset();$('productForm').elements.id.value='';$('productFormTitle').textContent='إضافة منتج';$('existingImages').replaceChildren();updateDiscountPreview()};
 $('productForm').onsubmit = async e => {
   e.preventDefault();
   const f=e.target;
@@ -565,9 +588,13 @@ $('productForm').onsubmit = async e => {
   const oldUrls=Array.isArray(previous?.image_urls)?previous.image_urls:[];
   const removed=new Set(Array.from(f.querySelectorAll('input[name="remove_extra_image"]:checked')).map(x=>x.value));
   const retained=oldUrls.filter(url=>!removed.has(url));
+  const discount=updateDiscountPreview();
+  if(!discount){msg('productMsg','تحقق من السعر الأصلي ونسبة الخصم (0 إلى 99).');return;}
   const record={
     name:f.elements.name.value.trim(),
-    price:Number(f.elements.price.value),
+    original_price:discount.original,
+    discount_percent:discount.percent,
+    price:discount.finalPrice,
     category:f.elements.category.value.trim(),
     description:f.elements.description.value.trim(),
     active:f.elements.active.value==='true',
@@ -1021,6 +1048,7 @@ $('staffLogout').onclick=async()=>{
   show('admin');await checkAuth();
 };
 
+updateDiscountPreview();
 loadShop();
 show('admin');checkAuth();
 </script></body></html>
