@@ -331,6 +331,31 @@ for(const province of ['بغداد','البصرة','نينوى','أربيل','ا
 $('checkoutForm').onsubmit=e=>{e.preventDefault();if(!cartEntries().length)return;const f=new FormData(e.currentTarget),summary=$('reviewDetails');summary.replaceChildren();for(const [label,key] of [['الاسم','name'],['الهاتف','phone'],['المحافظة','province'],['المنطقة','district'],['العنوان','address'],['الملاحظات','notes']])summary.append(node('p',label+': '+(f.get(key)||'—')));for(const {p,qty} of cartEntries())summary.append(node('p',p.name+' × '+qty+' — '+money(p.price*qty)));summary.append(node('h3','الإجمالي: '+money(subtotal()+config.delivery_fee)));$('checkoutForm').classList.add('hidden');$('review').classList.remove('hidden')};
 $('editOrder').onclick=()=>{$('review').classList.add('hidden');$('checkoutForm').classList.remove('hidden')};
 $('confirmOrder').onclick=async()=>{if(!db)return alert('لم يتم ربط Supabase');const f=new FormData($('checkoutForm'));const b=$('confirmOrder');b.disabled=true;try{const {data,error}=await db.rpc('store_checkout',{p_name:f.get('name'),p_phone:f.get('phone'),p_province:f.get('province'),p_district:f.get('district'),p_address:f.get('address'),p_notes:f.get('notes'),p_items:cartEntries().map(x=>({id:x.p.id,qty:x.qty}))});if(error)throw error;cart={};saveCart();$('checkoutForm').reset();$('checkoutForm').classList.remove('hidden');$('review').classList.add('hidden');$('doneText').textContent='رقم طلبك: '+data+' — راح نتواصل وياك لتأكيد التفاصيل.';show('done')}catch(e){alert('تعذر إرسال الطلب: '+e.message)}finally{b.disabled=false}};
+// ===== APK إشعارات الطلبات: تسجيل الجهاز فقط للحساب المخوّل =====
+let ebdaaPushLastToken = '';
+function ebdaaNativePushToken(){
+  try {
+    return typeof window.EbdaaAndroid?.getPushToken === 'function'
+      ? String(window.EbdaaAndroid.getPushToken() || '') : '';
+  } catch { return ''; }
+}
+async function ebdaaRegisterPush(){
+  if (!db || !(isAdmin || isStaff)) return;
+  const token=ebdaaNativePushToken();
+  if (!token || token===ebdaaPushLastToken) return;
+  const {error}=await db.rpc('store_register_push_token',{p_fcm_token:token});
+  if(error){ console.warn('FCM token register failed:',error.message); return; }
+  ebdaaPushLastToken=token;
+}
+async function ebdaaUnregisterPush(){
+  const token=ebdaaNativePushToken();
+  if(db && token){
+    const {error}=await db.rpc('store_unregister_push_token',{p_fcm_token:token});
+    if(error) console.warn('FCM token removal failed:',error.message);
+  }
+  ebdaaPushLastToken='';
+}
+window.addEventListener('ebdaa-token-ready',()=>{void ebdaaRegisterPush()});
 $('adminBtn').onclick=async()=>{show('admin');await checkAuth()};
 async function checkAuth(){
   if(!db){show('admin');return msg('loginMsg','اربط Supabase أولاً')}
@@ -350,14 +375,14 @@ async function checkAuth(){
   }
   $('loginPanel').classList.toggle('hidden',isAdmin||isStaff);
   $('adminContent').classList.toggle('hidden',!isAdmin);
-  if(isAdmin){show('admin');await loadAdmin()}
-  else if(isStaff){products=[];orders=[];items=[];payments=[];banners=[];show('staff');await loadStaffOrders()}
+  if(isAdmin){show('admin');await loadAdmin();await ebdaaRegisterPush()}
+  else if(isStaff){products=[];orders=[];items=[];payments=[];banners=[];show('staff');await loadStaffOrders();await ebdaaRegisterPush()}
   else{
     show('admin');
     msg('loginMsg',user?'هذا الحساب غير مضاف كمدير أو موظف. تواصل مع صاحب المتجر.':'');
   }
 }
-$('loginForm').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const {error}=await db.auth.signInWithPassword({email:f.get('email'),password:f.get('password')});if(error)return msg('loginMsg',error.message);await checkAuth()};$('logout').onclick=async()=>{await db.auth.signOut();await checkAuth()};
+$('loginForm').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const {error}=await db.auth.signInWithPassword({email:f.get('email'),password:f.get('password')});if(error)return msg('loginMsg',error.message);await checkAuth()};$('logout').onclick=async()=>{await ebdaaUnregisterPush();await db.auth.signOut();await checkAuth()};
 function tab(t){for(const k of ['overview','catalog','orders','settings'])$(k+'Tab').classList.toggle('hidden',k!==t)}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 async function loadAdmin(){const [p,o,i,c]=await Promise.all([db.from('store_products').select('*').order('created_at',{ascending:false}),db.from('store_orders').select('*').order('created_at',{ascending:false}).limit(500),db.from('store_order_items').select('*').limit(2000),db.from('store_config').select('*').eq('id',1).single()]);if(p.error||o.error||i.error){alert('خطأ في صلاحيات الإدارة: '+(p.error||o.error||i.error).message);return}products=p.data||[];orders=o.data||[];items=i.data||[];if(c.data)config=c.data;renderMetrics();renderAdminProducts();renderOrders();const form=$('settingsForm');for(const key of ['name','subtitle','instagram','tiktok','whatsapp','delivery_fee'])form.elements[key].value=config[key]??''}
 function renderMetrics(){
@@ -1042,6 +1067,7 @@ $('staffSearch').addEventListener('input',()=>{if(isStaff)renderStaffOrders()});
 $('staffOnlyPending').addEventListener('change',()=>{if(isStaff)renderStaffOrders()});
 $('staffRefresh').onclick=()=>loadStaffOrders();
 $('staffLogout').onclick=async()=>{
+  await ebdaaUnregisterPush();
   const {error}=await db.auth.signOut();
   if(error)return staffNotice('تعذر تسجيل الخروج: '+error.message,true);
   isStaff=false;staffOrders=[];staffItems=[];staffImages=[];
